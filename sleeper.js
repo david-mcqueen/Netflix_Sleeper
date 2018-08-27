@@ -8,7 +8,6 @@ window.netflixSleeper.extensionControl = (function() {
 
     var timerControls = {
         incrementTime: function() {
-            debugger;
             var currentTime = timerControls.getSleepTime();
             var newTime = currentTime + 1;
 
@@ -18,7 +17,6 @@ window.netflixSleeper.extensionControl = (function() {
             timerControls.setSleepTime(newTime);
         },
         decrementTime: function() {
-            debugger;
             var currentTime = timerControls.getSleepTime();
             var newTime = currentTime - 1;
 
@@ -33,7 +31,6 @@ window.netflixSleeper.extensionControl = (function() {
             return parseInt(timerInput.value) || 0;
         },
         getSleepTimeMS: function() {
-            debugger;
             var timeInMins = timerControls.getSleepTime();
             return timerControls.convertTimeToMs(timeInMins);
         },
@@ -42,7 +39,7 @@ window.netflixSleeper.extensionControl = (function() {
             timerInput.value = time || 0;
         },
         convertTimeToMs: function(ms) {
-            return ms * 60 * 60;
+            return ms * 60 * 1000;
         }
     }
 
@@ -63,6 +60,7 @@ window.netflixSleeper.extensionControl = (function() {
         },
         setupPlayDelay: function() {
             var sleepTime = timerControls.getSleepTimeMS();
+            debugger;
 
             chrome.tabs.executeScript(vars.currentTab.id, {
                 code: 'var sleepTime = ' + sleepTime + ';'
@@ -72,6 +70,7 @@ window.netflixSleeper.extensionControl = (function() {
         },
         setupPauseDelay: function() {
             var sleepTime = timerControls.getSleepTimeMS();
+            debugger;
 
             chrome.tabs.executeScript(vars.currentTab.id, {
                 code: 'var sleepTime = ' + sleepTime + ';'

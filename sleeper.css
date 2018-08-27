@@ -75,6 +75,8 @@ button:focus{
     /* width: 60px; */
     text-align: right;
     max-width: 92px;
+    padding-right: 15px;
+    font-size: 19px;
 }
 
 .adjustTimeButton {
@@ -83,10 +85,6 @@ button:focus{
     margin: 0px 5px 0px 5px;
 }
 
-#sleepTime{
-    flex: 1 1 auto;
-    font-size: 19px;
-}
 
 .adjustTimeButton:hover{
     background-color: rgba(51,51,51,.4);
@@ -96,8 +94,11 @@ button:focus{
 }
 
 .unitDisplay {
-    color: #fff;
-    font-size: 0.7em
+    position: absolute;
+    left: 139px;
+    top: 50px;
+    color: #969696;
+    font-size: 0.8em;
 }
 
 
