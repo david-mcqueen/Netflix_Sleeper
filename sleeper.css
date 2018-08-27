@@ -1,0 +1,26 @@
+body {
+    width: 200px;
+    background: black;
+}
+
+div.logoContianer {
+    width: 100%;
+}
+div.logo {
+    color: #e50914;
+    font-size: 1.8em;
+    vertical-align: middle;
+    
+}
+
+.sleepTimeControl {
+    width: 100%;
+}
+
+#sleepTime{
+    width: 75px;
+}
+
+.adjustTimeButton {
+    width: 40px;
+}

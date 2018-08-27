@@ -1,9 +1,19 @@
 <html>
     
         <script src="sleeper.js"></script>
+        <link rel="stylesheet" type="text/css" href="sleeper.css">
 
-        Hello!
-        <button id="playButton">Play in 5 seconds</button>
+        <div class="logoContainer">
+            <div class="logo">
+                Netflix Sleeper
+            </div>
+        </div>
+        <!-- <button id="playButton">Play in 5 seconds</button> -->
         <button id="pauseButton">Pause in 5 seconds</button>
+        <div class="sleepTimeControl">
+            <button id="decrementTime" class="adjustTimeButton">-</button>
+            <input type="number" id="sleepTime" value="3000">
+            <button id="incrementTime" class="adjustTimeButton">+</button>
+        </div>
     
 </html>
