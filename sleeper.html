@@ -8,12 +8,17 @@
                 Netflix Sleeper
             </div>
         </div>
-        <!-- <button id="playButton">Play in 5 seconds</button> -->
-        <button id="pauseButton">Pause in 5 seconds</button>
         <div class="sleepTimeControl">
-            <button id="decrementTime" class="adjustTimeButton">-</button>
-            <input type="number" id="sleepTime" value="3000">
-            <button id="incrementTime" class="adjustTimeButton">+</button>
+            <button id="decrementTime" class="adjustTimeButton">
+                <span class="icon-minus"></span>
+            </button>
+            <input type="number" id="sleepTime" value="30">
+            <button id="incrementTime" class="adjustTimeButton">
+                <span class="icon-plus"></span>
+            </button>
         </div>
+        
+        <!-- <button id="playButton">Play in 5 seconds</button> -->
+        <button id="pauseButton" class="sleeperButtons">Sleep</button>
     
 </html>

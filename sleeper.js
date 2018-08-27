@@ -8,31 +8,41 @@ window.netflixSleeper.extensionControl = (function() {
 
     var timerControls = {
         incrementTime: function() {
-            var currentTime = timerControls.getSleepTimeMS();
+            debugger;
+            var currentTime = timerControls.getSleepTime();
             var newTime = currentTime + 1;
 
-            if(newTime > 18000) // Limited to 5 hours
-                newTime = 18000;
+            if(newTime > 300) // Limited to 5 hours
+                newTime = 300;
 
-            timerControls.setSleepTimeMS(newTime);
+            timerControls.setSleepTime(newTime);
         },
         decrementTime: function() {
-            var currentTime = timerControls.getSleepTimeMS();
+            debugger;
+            var currentTime = timerControls.getSleepTime();
             var newTime = currentTime - 1;
 
-            if(newTime < 0) // Can't have negative sleep time
-                newTime = 0;
+            if(newTime <= 0) // Can't have negative sleep time
+                newTime = 1;
 
-            timerControls.setSleepTimeMS(newTime);
+            timerControls.setSleepTime(newTime);
         },
-        getSleepTimeMS: function() {
+        getSleepTime: function() {
             var timerInput = document.getElementById("sleepTime");
 
             return parseInt(timerInput.value) || 0;
         },
-        setSleepTimeMS: function(time){
+        getSleepTimeMS: function() {
+            debugger;
+            var timeInMins = timerControls.getSleepTime();
+            return timerControls.convertTimeToMs(timeInMins);
+        },
+        setSleepTime: function(time){
             var timerInput = document.getElementById("sleepTime");
             timerInput.value = time || 0;
+        },
+        convertTimeToMs: function(ms) {
+            return ms * 60 * 60;
         }
     }
 
