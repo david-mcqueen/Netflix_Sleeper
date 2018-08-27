@@ -1,0 +1,10 @@
+{
+    "manifest_version": 2,
+    "name": "Netflix Sleeper",
+    "description": "Sleep timer which will pause the current Netflix video after the time specified",
+    "version": "0.0.1",
+    "browser_action": {
+        "default_popup": "sleeper.html"
+    },
+    "permissions": ["tabs", "<all_urls>"]
+}
