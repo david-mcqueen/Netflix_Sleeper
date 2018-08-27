@@ -1,21 +1,29 @@
 window.netflixSleeper = window.netflixSleeper || {};
+window.netflixSleeper.pauseScript = (function() {
 
-function click() {
+    var vars = {
+        existingTimer: undefined
+    };
 
-    debugger;
-    var pauseElements = document.getElementsByClassName('svg-icon-nfplayerPause');
+    var controls = {
+        click: function() {
+            debugger;
+            var pauseElements = document.getElementsByClassName('svg-icon-nfplayerPause');
 
-    if(pauseElements != null && pauseElements.length >= 1 && !window.netflixSleeper.existingTimer){
-        
-        window.netflixSleeper.existingTimer = setTimeout(function() {
+            if(pauseElements != null && pauseElements.length >= 1 && !vars.existingTimer){
+                
+                vars.existingTimer = setTimeout(function() {
 
-            window.netflixSleeper.existingTimer = null;
-            pauseElements[0].parentElement.click()
+                    clearTimeout(vars.existingTimer);
+                    vars.existingTimer = null;
+                    pauseElements[0].parentElement.click()
 
-        }, sleepTime);
+                }, sleepTime);
 
+            }
+        }
     }
 
-}
+    controls.click();
 
-click();
+})()

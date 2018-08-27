@@ -1,52 +1,56 @@
-var currentTab;
+window.netflixSleeper = window.netflixSleeper || {};
 
-function setup(info) {
+window.netflixSleeper.extensionControl = (function() {
 
-    currentTab = info;
+    var vars = {
+        currentTab: undefined
+    };
+
+    var controls = {
+        setup: function(info) {
+            vars.currentTab = info;
     
-    document.getElementById("playButton").addEventListener("click", setupPlayDelay);
-    document.getElementById("pauseButton").addEventListener("click", setupPauseDelay);
-}
+            document.getElementById("playButton").addEventListener("click", controls.setupPlayDelay);
+            document.getElementById("pauseButton").addEventListener("click", controls.setupPauseDelay);
+        },
+        setupPlayDelay: function() {
+            var sleepTime = controls.getSleepTimeMS();
 
-function setupPlayDelay(){
-    var sleepTime = getSleepTimeMS();
+            chrome.tabs.executeScript(vars.currentTab.id, {
+                code: 'var sleepTime = ' + sleepTime + ';'
+            }, function() {
+                chrome.tabs.executeScript(vars.currentTab.id, {file: "play_content_script.js"});
+            });
+        },
+        setupPauseDelay: function() {
+            var sleepTime = controls.getSleepTimeMS();
 
-    chrome.tabs.executeScript(currentTab.id, {
-        code: 'var sleepTime = ' + sleepTime + ';'
-    }, function() {
-        chrome.tabs.executeScript(currentTab.id, {file: "play_content_script.js"});
-    });
+            chrome.tabs.executeScript(vars.currentTab.id, {
+                code: 'var sleepTime = ' + sleepTime + ';'
+            }, function() {
+                chrome.tabs.executeScript(vars.currentTab.id, {file: "pause_content_script.js"});
+            });
+        },
+        getSleepTimeMS: function() {
+            debugger;
+            return 5000;
+        },
+        setupEventListener: function() {
+            window.addEventListener('DOMContentLoaded', function () {
 
-}
-
-function setupPauseDelay() {
-    var sleepTime = getSleepTimeMS();
-
-    chrome.tabs.executeScript(currentTab.id, {
-        code: 'var sleepTime = ' + sleepTime + ';'
-    }, function() {
-        chrome.tabs.executeScript(currentTab.id, {file: "pause_content_script.js"});
-    });
-
-
-}
-
-function getSleepTimeMS() {
+                chrome.tabs.query({
+                    active: true,
+                    currentWindow: true
+                  }, function (tabs) {
+                      debugger;
+                      controls.setup(tabs[0]);
+                  });
+            
+            });
+        }
+    };
     debugger;
-    return 5000;
-}
 
-window.addEventListener('DOMContentLoaded', function () {
+    controls.setupEventListener();
 
-    chrome.tabs.query({
-        active: true,
-        currentWindow: true
-      }, function (tabs) {
-          debugger;
-          setup(tabs[0]);
-      });
-
-
-      
-
-  });
+})();
